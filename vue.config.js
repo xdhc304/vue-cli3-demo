@@ -4,7 +4,7 @@ module.exports = {
   css: { // 对组件中css的配置
     modules: true
   },
-  baseUrl: '/',
+  publicPath: '/',
   devServer: { // 对开发服务的设置
     // Various Dev Server settings
     host: '0.0.0.0', // process.env.HOST,

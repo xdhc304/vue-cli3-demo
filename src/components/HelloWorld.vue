@@ -36,11 +36,21 @@ export default {
   props: {
     msg: String
   },
+  data() {
+    return {
+      blogList: []
+    }
+  },
   methods: {
     getBlogList() {
       let _this = this;
-      this.$axios.get('/api/blog/listblog').then((response) => {
-        console.log(response);
+      this.$axios.get('/api/blog/listblog').then((res) => {
+        console.log(res);
+        if (res.success) {
+          this.blogList = res.data.blogList;
+        } else {
+          this.$message.warning(res.message);
+        }
       }).catch((error) =>{
         console.log(error);
       });
