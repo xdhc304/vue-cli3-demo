@@ -35,6 +35,19 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    async getBlogList() {
+      let _this = this;
+      this.$axios.post('/api/blog/listblog').then((response) => {
+        console.log(response);
+      }).catch((error) =>{
+        console.log(error);
+      });
+    }
+  },
+  mounted() {
+    this.getBlogList();
   }
 }
 </script>
