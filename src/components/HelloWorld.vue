@@ -37,9 +37,9 @@ export default {
     msg: String
   },
   methods: {
-    async getBlogList() {
+    getBlogList() {
       let _this = this;
-      this.$axios.post('/api/blog/listblog').then((response) => {
+      this.$axios.get('/api/blog/listblog').then((response) => {
         console.log(response);
       }).catch((error) =>{
         console.log(error);
