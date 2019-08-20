@@ -10,7 +10,6 @@ module.exports = {
     port: 8081, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     open: true, // 自动调用默认浏览器打开
     https: false, // 是否使用https, https使用node的一个内部默认的ca证书
-    hotOnly: false,
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
