@@ -38,15 +38,62 @@ module.exports = {
   css: {
     extract: true, // 分离插件
     sourceMap: false,
+    modules: false,
     loaderOptions: {
       sass: {
         data: `
-          @import "@asset/common/index.scss"
+          @import "@assets/common/index.scss"
         `
       }
-    },
-    modules: false
-  }
+    }
+  },
+  // 配置别名
+  chainWebpack: config => {
+    config.resolve.alias
+    .set("@", resolve("src"))
+    .set("@img", resolve("src/assets/images"))
+    .set("@scss", resolve("src/assets/common"))
+    // 判断是否生产环境
+    if (isProduction) {
+      config.plugins.delete('preload');
+      config.plugins.delete("prefetch");
+      //压缩
+      config.optimization.minimize(true);
+      //分割成块
+      config.optimization.splitChunks({
+        chunks: 'all'
+      })
+      // 注入cdn
+    } else {
+
+    }
+  },
+  configureWebpack: config => {
+    if (isProduction) {
+      // 注入cdn
+      // 生产环境修改配置
+      config.plugins.push(
+        new UglifyJSPlugin({
+          // 删除
+          uglifyOptions: {
+            compress: {
+              drop_debugger: true,
+              drop_console: true
+            }
+          },
+          sourceMap: false,
+          // 多进程并行来提高构建速度
+          parallel: true
+        })
+      )
+    } else {
+      // 为其他环境配置
+    }
+  },
+  // 生产环境是否生产sourceMap
+  productionSourceMap: false,
+  // 启用并行化 默认并发运行数 ('os').cpus().length - 1 显著加速构建
+  parallel: require('os').cpus().length > 1
 
 }
 
