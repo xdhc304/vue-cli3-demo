@@ -1,11 +1,14 @@
 module.exports = {
-  presets: [
-    '@vue/app'
+  "presets": [
+    "@vue/app"
   ],
-  plugins: [
+  "plugins": [
     [
-      "import",
-      { libraryName: "ant-design-vue", libraryDirectory: "es", style: true }
+      "component",
+      {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }
     ]
   ]
 }

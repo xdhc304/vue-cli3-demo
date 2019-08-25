@@ -10,12 +10,12 @@ function resolve(dir) {
 module.exports = {
   lintOnSave: false, // 保存时检查格式，使用eslint
   crossorigin: 'anonymous', // htmlWebpackPlugin
-  css: { // 对组件中css的配置
-    modules: true
-  },
   publicPath: '/', // 基本路径baseUrl
   outputDir: 'dist', // 输出文件路径
   lintOnSave: true,
+  publicPath: '/',
+  outputDir: 'dist', // 打包的目录
+  productionSourceMap: false, // 生产环境是否生成 SourceMap
   devServer: { // 对开发服务的设置
     compress: false, // 开启压缩
     // Various Dev Server settings
