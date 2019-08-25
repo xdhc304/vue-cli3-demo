@@ -42,7 +42,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         data: `
-          @import "@assets/common/index.scss"
+          @import "@/assets/common/index.scss"
         `
       }
     }
