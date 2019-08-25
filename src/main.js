@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from './util/http';
-import { message  } from 'ant-design-vue';
 
 Vue.prototype.$axios = axios;
 Vue.prototype.$message = message;
