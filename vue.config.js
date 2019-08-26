@@ -8,14 +8,12 @@ function resolve(dir) {
 }
 
 module.exports = {
-  lintOnSave: false, // 保存时检查格式，使用eslint
+  lintOnSave: true, // 保存时检查格式，使用eslint
   crossorigin: 'anonymous', // htmlWebpackPlugin
   publicPath: '/', // 基本路径baseUrl
   outputDir: 'dist', // 输出文件路径
-  lintOnSave: true,
-  publicPath: '/',
-  outputDir: 'dist', // 打包的目录
-  productionSourceMap: false, // 生产环境是否生成 SourceMap
+  productionSourceMap: false, // 生产环境是否生成SourceMap
+  parallel: require('os').cpus().length > 1, // 启用并行化 默认并发运行数 ('os').cpus().length - 1 显著加速构建
   devServer: { // 对开发服务的设置
     compress: false, // 开启压缩
     // Various Dev Server settings
@@ -28,7 +26,6 @@ module.exports = {
         target: 'http://localhost:8080',
         ws: true,
         changeOrigin: true, // 是否允许跨域
-        ws: true,
         pathRewrite: {
           '^/api': '/api'
         }
@@ -64,8 +61,6 @@ module.exports = {
         chunks: 'all'
       })
       // 注入cdn
-    } else {
-
     }
   },
   configureWebpack: config => {
@@ -89,11 +84,7 @@ module.exports = {
     } else {
       // 为其他环境配置
     }
-  },
-  // 生产环境是否生产sourceMap
-  productionSourceMap: false,
-  // 启用并行化 默认并发运行数 ('os').cpus().length - 1 显著加速构建
-  parallel: require('os').cpus().length > 1
+  }
 
 }
 
