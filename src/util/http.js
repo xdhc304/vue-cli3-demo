@@ -1,4 +1,5 @@
 import axios from 'axios'
+axios.defaults.withCredentials =true
 
 // 拦截器的添加
 // 请求拦截器
