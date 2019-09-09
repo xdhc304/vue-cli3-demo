@@ -27,10 +27,13 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <Child></Child>
+    <Child2></Child2>
   </div>
 </template>
 
 <script>
+import Child from './Child'
 export default {
   name: 'HelloWorld',
   props: {
@@ -43,27 +46,28 @@ export default {
   },
   methods: {
     getBlogList() {
-      let _this = this;
       this.$axios.get('/api/blog/listblog').then((res) => {
-        console.log(res);
         if (res.success) {
           this.blogList = res.data.blogList;
         } else {
           this.$message.warning(res.message);
         }
-      }).catch((error) =>{
-        console.log(error);
+      }).catch((error) => {
+        console.error(error);
       });
     }
   },
   mounted() {
-    this.getBlogList();
+    // this.getBlogList();
+  },
+  components: {
+    Child
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style scoped>
 h3 {
   margin: 40px 0 0;
 }
@@ -77,7 +81,6 @@ li {
   margin: 0 10px;
 }
 a { 
-  // color: #42b983;
-  @include fontColor;
+  color: #42b983;
 }
 </style>
