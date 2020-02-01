@@ -1,5 +1,6 @@
 const path = require("path");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -79,7 +80,12 @@ module.exports = {
           sourceMap: false,
           // 多进程并行来提高构建速度
           parallel: true
-        })
+        }, new CompressionPlugin({
+          algorithm:'gzip',
+          test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'),
+          threshold: 10240,
+          minRatio: 0.8
+        }))
       )
     } else {
       // 为其他环境配置
