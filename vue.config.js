@@ -1,6 +1,7 @@
 const path = require("path");
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
+const productionGzipExtensions = ['js', 'css']
 
 const isProduction = process.env.NODE_ENV === 'production';
 
