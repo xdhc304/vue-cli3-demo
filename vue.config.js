@@ -12,8 +12,9 @@ function resolve(dir) {
 module.exports = {
   lintOnSave: true, // 保存时检查格式，使用eslint
   crossorigin: 'anonymous', // htmlWebpackPlugin
-  publicPath: '/', // 基本路径baseUrl
-  outputDir: 'dist', // 输出文件路径
+  publicPath: process.env.NODE_ENV === 'production' ? './static/' : '/', // 基本路径baseUrl
+  outputDir: path.resolve(__dirname, '../static'), // 输出文件路径
+  assetsDir: './',
   productionSourceMap: false, // 生产环境是否生成SourceMap
   parallel: require('os').cpus().length > 1, // 启用并行化 默认并发运行数 ('os').cpus().length - 1 显著加速构建
   devServer: { // 对开发服务的设置
